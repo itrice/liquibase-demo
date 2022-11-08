@@ -13,10 +13,8 @@ Windows, MacOS, Linux and Docker.
 ### Liquibase Properties
 
 
-
-
 ### Docker Command
-sudo docker run --rm -v /home/edwin/WorkSpace/liquibase/:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/c update
+sudo docker run --rm -v /home/edwin/WorkSpace/SourceCode/github/liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.docker.properties update
 
 ### SQL
 
@@ -46,9 +44,17 @@ e.g. v1.0.0_changelog-desc.sql
     </databaseChangeLog>
     
 - liquibase.docker.properties
-  >-  classpath: /liquibase/changelog
-  >- changeLogFile:db.changelog.xml
-  >- url: jdbc:sqlserver://172.19.224.1:1433;encrypt=true;trustServerCertificate=true;databaseName=inpart;
-  >- username: sa
-  >- password: sa123
-
+  ```
+  classpath: /liquibase/changelog
+  changeLogFile:db.changelog.xml
+  url: jdbc:sqlserver://172.19.224.1:1433;encrypt=true;trustServerCertificate=true;databaseName=inpart;
+  username: sa
+  password: sa123
+ - based on change-set
+ 
+ #### Git Hub
+ [Repository Address](https://github.com/itrice/liquibase-demo)
+ #### Jenkins
+  Run in docker.
+  ```
+  sudo docker run --name jenkins-docker --restart=on-failure --detach --env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 --publish 8080:8080 --publish 50000:50000 --volume jenkins-data:/var/jenkins_home --volume jenkins-docker-certs:/certs/client:ro jenkins/jenkins
