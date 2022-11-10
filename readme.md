@@ -40,9 +40,11 @@ e.g. v1.0.0_changelog-desc.sql
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
       http://www.liquibase.org/xml/ns/pro 
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">  
-    <includeAll path="db.changelogs/"/>
+    <include path="db.changelogs/v1.0.0_changelog-root.sql"/>
+    <include path="v1.0.1_changelog-employee.sql"/>
+    <!-- <includeAll path="db.changelogs/"/> -->
     </databaseChangeLog>
-    
+        
 - liquibase.docker.properties
   ```
   classpath: /liquibase/changelog
@@ -57,4 +59,13 @@ e.g. v1.0.0_changelog-desc.sql
  #### Jenkins
   Run in docker.
   ```
-  sudo docker run --name jenkins-docker --restart=on-failure --detach --env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 --publish 8080:8080 --publish 50000:50000 --volume jenkins-data:/var/jenkins_home --volume jenkins-docker-certs:/certs/client:ro jenkins/jenkins
+  sudo docker run -u 0 --privileged --name jenkins-docker --restart=on-failure --detach --env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 --publish 8080:8080 --publish 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker --volume jenkins-data:/var/jenkins_home --volume jenkins-docker-certs:/certs/client:ro jenkins/jenkins
+
+  docker run -u 0 --privileged --name jenkins -d -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+  sudo docker run --privileged  --name jenkins -p 8080:8080 -p 50000:50000  -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/bin/docker  -v /var/jenkins_home:/var/jenkins_hom  -v /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 -d jenkins/jenkins
+
+  #### Search log
+  docker logs --tail 50 --follow --timestamps jenkins
+
+

@@ -3,10 +3,20 @@ pipeline{
         docker { image 'liquibase/liquibase:latest'}
     }
     stages{
-        stage('Continuous Deploy'){
+        stage("status"){
             steps{
-                sh 'liquibase --version'
+                sh 'liquibase status --defaultsFile=liquibase.docker.properties'
             }
+        }
+        stage("update"){
+            steps{
+                sh 'liquibase update --defaultsFile=liquibase.docker.properties'
+            }
+        }
+    }
+    post{
+        always{
+            cleanWs()
         }
     }
 }
