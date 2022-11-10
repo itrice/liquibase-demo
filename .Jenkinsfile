@@ -5,6 +5,7 @@ pipeline{
     stages{
         stage("status"){
             steps{
+                sh 'mkdir changelog'
                 sh 'liquibase status --defaultsFile=liquibase.properties'
             }
         }
