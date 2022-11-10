@@ -5,12 +5,12 @@ pipeline{
     stages{
         stage("status"){
             steps{
-                sh 'liquibase status --defaultsFile=liquibase.docker.properties'
+                sh 'liquibase status --defaultsFile=liquibase.properties'
             }
         }
         stage("update"){
             steps{
-                sh 'liquibase update --defaultsFile=liquibase.docker.properties'
+                sh 'liquibase update --defaultsFile=liquibase.properties'
             }
         }
     }
