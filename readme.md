@@ -1,3 +1,9 @@
+<style>
+r { color: Red }
+o { color: Orange }
+g { color: Green }
+</style>
+
 # Liquibase Demo
 
 ## Comparer
@@ -71,5 +77,31 @@ e.g. v1.0.0_changelog-desc.sql
 
   #### Search log
   docker logs --tail 50 --follow --timestamps jenkins
+```
+  #### **Data 1**
+  |Index |Changes |File Name ||
+  | :---: | --- | --- |---|
+  |1| Create:<ul><li>Table A</li></ul> | v1.0.0_changelog-Add-table-A.sql | &#x2705; |
+  |2| Create:<ul><li>Table B</li></ul> | v1.1.0_changelog-Add-table-B.sql | &#x2705; |
+  |3| Create:<ul><li>Table C</li></ul> | v1.2.0_changelog-Add-table-C.sql | &#x2705; |
+  |4| PK-FK |v1.2.1_FK_table_A_and_table_B.sql|&#x2705;|
+  |5| Seeds Data|v1.2.2_changelog-Seeds.sql|&#x2705;|
 
+  #### **Data 2**
+  |Index |Changes |File Name ||
+  | :---: | --- | --- |---|
+  |1| Create:<ul><li>Table A</li></ul> | v1.0.0_changelog-Add-table-A.sql | &#x2705; |
+  |2| Create:<ul><li>Table B</li></ul> | v1.1.0_changelog-Add-table-B.sql | &#x2705; |
+  |3| Create:<ul><li>Table C</li></ul> | v1.2.0_changelog-Add-table-C.sql | &#x2705; |
+  |4| PK-FK |v1.2.1_FK_table_A_and_table_B.sql| &#x274C;|
+  |5| Seeds Data|v1.2.2_changelog-Seeds.sql|&#x274C;|
 
+  #### **Data 2.1**
+  |Index |Changes |File Name ||
+  | :---: | --- | --- |---|
+  |1| Create:<ul><li>Table A</li></ul> | v1.0.0_changelog-Add-table-A.sql | &#x2705; |
+  |2| Create:<ul><li>Table B</li></ul> | v1.1.0_changelog-Add-table-B.sql | &#x2705; |
+  |3| Create:<ul><li>Table C</li></ul> | v1.2.0_changelog-Add-table-C.sql | &#x2705; |
+  |<o>4</o>| Modify:<ul><li>Table B</li></ul> | <o>v1.2.1_changelog-Modify-table-B.sql</o> | &#x2705; |
+  |<r>5</r>| PK-FK |<r>v1.2.2_FK_table_A_and_table_B.sql</r>|&#x2705;|
+  |<r>6</r>| Seeds Data|<r>v1.2.3_changelog-Seeds.sql</r>|&#x2705;|
