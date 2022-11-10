@@ -14,7 +14,11 @@ Windows, MacOS, Linux and Docker.
 
 
 ### Docker Command
-sudo docker run --rm -v /home/edwin/WorkSpace/SourceCode/github/liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.docker.properties update
+``` 
+[linux] docker run --rm -v /home/edwin/WorkSpace/SourceCode/github/liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.docker.properties update
+
+[windows] docker run --rm -v C:\Users\Edwin\Documents\01WorkingSpace\SourceCode\Edwin\liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.docker.properties update
+```
 
 ### SQL
 
