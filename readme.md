@@ -1,10 +1,11 @@
+<!--Style-->
 <style>
 r { color: Red }
 o { color: Orange }
 g { color: Green }
 </style>
 
-# Liquibase Demo
+# Liquibase
 
 ## Comparer
 ### Liqubase VS. Flyway
@@ -14,16 +15,24 @@ https://www.baeldung.com/liquibase-vs-flyway#:~:text=Defining%20a%20Change,chang
 https://www.liquibase.com/liquibase-vs-flyway
 
 ## Support
-Windows, MacOS, Linux and Docker.
+OS:  Windows, MacOS, Linux and Docker.
 
-### Liquibase Properties
+File: SQL, JSON, YAML, XML
 
+## Concepts & Feature
+### Changelogs
 
+### ChangeSet
+  
+### Properties
+ - stauts
+ - update
+ - add
 ### Docker Command
 ``` 
-[linux] docker run --rm -v /home/edwin/WorkSpace/SourceCode/github/liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.docker.properties update
+[linux] docker run --rm -v /home/edwin/WorkSpace/SourceCode/github/liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.properties db-doc changelogDocs update
 
-[windows] docker run --rm -v C:\Users\Edwin\Documents\01WorkingSpace\SourceCode\Edwin\liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.docker.properties update
+[windows] docker run --rm -v C:\Users\Edwin\Documents\01WorkingSpace\SourceCode\Edwin\liquibase-demo:/liquibase/changelog liquibase/liquibase --defaultsFile=/liquibase/changelog/liquibase.properties db-doc changelogDocs update
 ```
 
 ### SQL
@@ -34,7 +43,7 @@ v MajorNumber . MinorNumber . FixNumber _changelog- Desc .sql
 
 e.g. v1.0.0_changelog-desc.sql
 
-### Demo
+## Demo
 #### liquibase
 - changelog
 - classpath
@@ -105,3 +114,10 @@ e.g. v1.0.0_changelog-desc.sql
   |<o>4</o>| Modify:<ul><li>Table B</li></ul> | <o>v1.2.1_changelog-Modify-table-B.sql</o> | &#x2705; |
   |<r>5</r>| PK-FK |<r>v1.2.2_FK_table_A_and_table_B.sql</r>|&#x2705;|
   |<r>6</r>| Seeds Data|<r>v1.2.3_changelog-Seeds.sql</r>|&#x2705;|
+
+  #### **Data 3**
+  |Index |Changes |File Name ||
+  | :---: | --- | --- |---|
+  |1| Create:<ul><li>Table A&B</li></ul> | v1.0.0_changelog-Add-table-A-and-B.sql | &#x2705; |
+  |2| Create:<ul><li>Table C</li></ul> | v1.2.0_changelog-Add-table-C.sql | &#x2705; |
+  |3| Seeds Data|v1.2.1_changelog-Seeds.sql|&#x2705;|
